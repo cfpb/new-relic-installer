@@ -1,0 +1,10 @@
+---
+# Provisions a VM with a New Relic agent
+
+- hosts: php-app
+  gather_facts: False
+  roles:
+    - python27
+    - apache
+    - mysql
+    - php

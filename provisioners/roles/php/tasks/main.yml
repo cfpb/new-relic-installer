@@ -1,0 +1,6 @@
+---
+# tasks file for php
+
+- name: install php
+  yum: name=php state=present
+  sudo: yes

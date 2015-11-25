@@ -1,0 +1,22 @@
+---
+# tasks file for apache
+- name: install apache
+  yum: name=httpd state=present
+  sudo: yes
+
+- name: install apache
+  yum: name=httpd-devel
+  sudo: yes
+
+- name: pip install mod_wsgi
+  pip: name=mod_wsgi
+  sudo: yes
+
+- name: start apache
+  service: name=httpd state=started enabled=yes
+  sudo: yes
+
+- name: disable apache trace
+  lineinfile: dest=/etc/httpd/conf/httpd.conf state=present line="TraceEnable off"
+  sudo: yes
+    
