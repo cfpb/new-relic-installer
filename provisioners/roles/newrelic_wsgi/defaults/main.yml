@@ -1,0 +1,7 @@
+---
+# defaults file for newrelic_wsgi
+newrelic_inifile: /opt/newrelic/newrelic.ini
+newrelic_agent_logfile: /tmp/newrelic-python-agent.log
+python_application_name: "Python App1"
+newrelic_high_security: true
+

@@ -1,0 +1,36 @@
+---
+# tasks file for newrelic_wsgi
+
+- name: create directory for newrelic config
+  file:
+    dest=/opt/newrelic/
+    mode=755
+    state=directory
+  sudo: yes
+
+#    https://docs.newrelic.com/docs/agents/python-agent/installation-configuration/python-agent-admin-script
+- name: Copy newrelic.ini
+  template:
+    src=newrelic.ini.j2
+    dest={{newrelic_inifile}} 
+  sudo: yes
+
+- name: pip install newrelic
+  pip: name=newrelic
+  sudo: yes
+
+- name: add agent config to the wsgi file
+  lineinfile: dest={{wsgi_scriptfile}} state=present line="newrelic.agent.initialize('{{newrelic_inifile}}')" insertbefore=BOF
+  sudo: yes
+- name: import newrelic to wsgi
+  lineinfile: dest={{wsgi_scriptfile}} state=present line="import newrelic.agent" insertbefore=BOF
+  sudo: yes
+  notify:
+    - restart apache
+  
+#    /usr/local/bin/newrelic-admin validate-config  /opt/newrelic/newrelic.ini
+
+
+
+    
+    

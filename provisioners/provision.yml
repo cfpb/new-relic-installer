@@ -8,6 +8,7 @@
     - apache
     - mysql
     - php
+    - newrelic_php
 
 - hosts: python-app
   gather_facts: False
@@ -15,3 +16,4 @@
     - python27
     - apache
     - wsgi_app
+    - newrelic_wsgi
