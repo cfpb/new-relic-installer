@@ -10,5 +10,7 @@
     src=info.php.j2
     dest=/var/www/info.php
   sudo: yes
+  notify:
+    - restart apache
     
     

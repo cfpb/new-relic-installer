@@ -18,4 +18,6 @@
       src=script.wsgi.j2
       dest=/usr/local/www/wsgi-scripts/myapp.wsgi
     sudo: yes
+    notify:
+      - restart apache
     

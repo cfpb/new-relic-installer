@@ -19,4 +19,6 @@
 - name: disable apache trace
   lineinfile: dest=/etc/httpd/conf/httpd.conf state=present line="TraceEnable off"
   sudo: yes
+  notify:
+    - restart apache
     
