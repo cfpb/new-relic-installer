@@ -4,3 +4,11 @@
 - name: install php
   yum: name=php state=present
   sudo: yes
+
+- name: Copy php script
+  template:
+    src=info.php.j2
+    dest=/var/www/info.php
+  sudo: yes
+    
+    

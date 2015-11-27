@@ -8,3 +8,10 @@
     - apache
     - mysql
     - php
+
+- hosts: python-app
+  gather_facts: False
+  roles:
+    - python27
+    - apache
+    - wsgi_app

@@ -12,6 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.verbose = 'v'
     ansible.groups = {
         "php-app" => ["default"],
+        "python-app" => ["default"],
     }
   end
 end

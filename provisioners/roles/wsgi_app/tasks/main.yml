@@ -1,0 +1,21 @@
+---
+# tasks file for wsgi_app
+  - name: created wsgi-scripts dir
+    file:
+      dest=/usr/local/www/wsgi-scripts/
+      mode=755
+      state=directory
+    sudo: yes
+
+  - name: Copy new wsgi virtual host
+    template:
+      src=app.conf.j2
+      dest=/etc/httpd/conf.d/app.conf
+    sudo: yes
+
+  - name: Copy app wsgi script
+    template:
+      src=script.wsgi.j2
+      dest=/usr/local/www/wsgi-scripts/myapp.wsgi
+    sudo: yes
+    
