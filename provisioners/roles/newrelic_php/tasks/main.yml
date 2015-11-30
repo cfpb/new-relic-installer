@@ -1,2 +1,35 @@
 ---
 # tasks file for newrelic_php
+
+- name: create directory for newrelic config
+  file:
+    dest=/opt/newrelic/
+    mode=755
+    state=directory
+  sudo: yes
+
+#    https://docs.newrelic.com/docs/agents/python-agent/installation-configuration/python-agent-admin-script
+- name: Copy newrelic.ini
+  template:
+    src=newrelic.ini.j2
+    dest={{newrelic_inifile}}
+  sudo: yes
+
+- name: install rpm
+  yum: name=rpm
+  sudo: yes
+
+- name: use rpm to get new relic yum repo
+  shell: rpm -Uvh http://yum.newrelic.com/pub/newrelic/el5/x86_64/newrelic-repo-5-3.noarch.rpm
+  sudo: yes
+  ignore_errors: yes
+
+- name: yum install newrelic php agent
+  yum: name=newrelic-php5
+  sudo: yes
+
+- name: configure a php agent
+  shell: export NR_INSTALL_SILENT=true; /usr/bin/newrelic-install install
+  sudo: yes
+  notify:
+    - restart apache
