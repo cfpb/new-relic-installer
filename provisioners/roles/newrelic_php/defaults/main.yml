@@ -1,6 +1,8 @@
 ---
 # defaults file for newrelic_php
-newrelic_inifile: /opt/newrelic/newrelic_php.ini
-newrelic_agent_logfile: /tmp/newrelic-php-agent.log
+newrelic_ini_path: "/opt/newrelic/"
+newrelic_agent_path: "/var/log/newrelic/"
+newrelic_ini_file: "{{newrelic_ini_path}}/newrelic_php.ini"
+newrelic_agentlog_file: "{{newrelic_agent_path}}/php_agent.log"
 python_application_name: "PHP App1"
 newrelic_high_security: true

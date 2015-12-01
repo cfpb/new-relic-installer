@@ -17,3 +17,13 @@
     - apache
     - wsgi_app
     - newrelic_wsgi
+
+- hosts: nr-php
+  gather_facts: False
+  roles:
+    - newrelic_php
+
+- hosts: nr-python
+  gather_facts: False
+  roles:
+    - newrelic_wsgi

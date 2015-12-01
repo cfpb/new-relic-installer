@@ -12,7 +12,7 @@
 - name: Copy newrelic.ini
   template:
     src=newrelic.ini.j2
-    dest={{newrelic_inifile}}
+    dest={{newrelic_ini_file}}
   sudo: yes
 
 - name: install rpm
