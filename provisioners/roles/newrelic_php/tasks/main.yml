@@ -1,20 +1,6 @@
 ---
 # tasks file for newrelic_php
 
-- name: create directory for newrelic config
-  file:
-    dest=/opt/newrelic/
-    mode=755
-    state=directory
-  sudo: yes
-
-#    https://docs.newrelic.com/docs/agents/python-agent/installation-configuration/python-agent-admin-script
-- name: Copy newrelic.ini
-  template:
-    src=newrelic.ini.j2
-    dest={{newrelic_ini_file}}
-  sudo: yes
-
 - name: install rpm
   yum: name=rpm
   sudo: yes
@@ -30,6 +16,24 @@
 
 - name: configure a php agent
   shell: export NR_INSTALL_SILENT=true; /usr/bin/newrelic-install install
+  sudo: yes
+  notify:
+    - restart apache
+
+- name: modify php newrelic.ini license
+  lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.license =" line="newrelic.license = {{newrelic_license_key}}"
+  sudo: yes
+
+- name: modify php newrelic.ini app name
+  lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.appname =" line="newrelic.appname = {{application_name}}"
+  sudo: yes
+
+- name: modify php newrelic.ini high security on
+  lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.high_security =" line="newrelic.high_security = 1"
+  sudo: yes
+
+- name: modify php newrelic.ini logfile
+  lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.logfile =" line="newrelic.logfile = {{newrelic_agentlog_file}}"
   sudo: yes
   notify:
     - restart apache

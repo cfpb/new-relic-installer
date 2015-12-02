@@ -1,4 +1,2 @@
 ---
 wsgi_scriptfile: /usr/local/www/wsgi-scripts/myapp.wsgi
-
-newrelic_license_key:
