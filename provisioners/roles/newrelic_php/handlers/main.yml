@@ -1,2 +1,5 @@
 ---
 # handlers file for newrelic_php
+- name: restart apache
+  service: name=httpd state=restarted sleep=1
+  sudo: yes
