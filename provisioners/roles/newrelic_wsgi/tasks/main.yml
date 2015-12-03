@@ -12,17 +12,14 @@
  
 - name: pip install newrelic
   pip: name=newrelic
+       extra_args='--install-option="--install-scripts=/usr/bin"'
   sudo: yes
 
-- name: generate ini
-  shell: /usr/local/bin/newrelic-admin generate-config {{newrelic_license_key}} {{newrelic_ini_file}} 
+- name: use newrelic-admin to generate ini
+  command: newrelic-admin generate-config {{newrelic_license_key}} {{newrelic_ini_file}}
   sudo: yes
 
-- name: modify python newrelic.ini license
-  lineinfile: dest={{newrelic_ini_file}} state=present regexp="license_key =" line="license_key = {{newrelic_license_key}}"
-  sudo: yes
-
-# lineinfile only replaces the last matching lines; use replace instead
+# lineinfile only replaces the last matching lines; use replace for multiple app_name replaces
 - name: modify python newrelic.ini app name
   replace: dest={{newrelic_ini_file}} regexp='.*app_name =.*\n' replace="app_name = {{application_name}}\n"
   sudo: yes
