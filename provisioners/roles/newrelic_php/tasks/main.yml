@@ -32,6 +32,22 @@
   lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.high_security =" line="newrelic.high_security = 1"
   sudo: yes
 
+- name: modify php newrelic.error_collector
+  lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.error_collector.record_database_errors =" line="newrelic.error_collector.record_database_errors = false"
+  sudo: yes
+
+- name: modify php newrelic.error_collector.record_database_errors
+  lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.error_collector.record_database_errors =" line="newrelic.error_collector.record_database_errors = false"
+  sudo: yes
+
+- name: modify php newrelic.daemon.auditlog
+  lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.daemon.auditlog =" line="newrelic.daemon.auditlog = /var/log/newrelic/audit.log"
+  sudo: yes
+
+- name: modify php newrelic.analytics_events.capture_attributes
+  lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.analytics_events.capture_attributes =" line="newrelic.analytics_events.capture_attributes = true"
+  sudo: yes
+
 - name: modify php newrelic.ini logfile
   lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.logfile =" line="newrelic.logfile = {{newrelic_agentlog_file}}"
   sudo: yes
