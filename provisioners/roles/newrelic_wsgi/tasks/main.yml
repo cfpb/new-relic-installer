@@ -29,7 +29,7 @@
   sudo: yes
 
 - name: modify python newrelic.ini logfile
-  lineinfile: dest={{newrelic_ini_file}} state=present regexp="log_file =" line="newrelic.logfile = {{newrelic_agentlog_file}}"
+  lineinfile: dest={{newrelic_ini_file}} state=present regexp="log_file =" line="log_file = {{newrelic_agentlog_file}}"
   sudo: yes
 
 - name: add agent config to the wsgi file
@@ -41,10 +41,3 @@
   sudo: yes
   notify:
     - restart apache
-  
-#    /usr/local/bin/newrelic-admin validate-config  /opt/newrelic/newrelic.ini
-
-
-
-    
-    
