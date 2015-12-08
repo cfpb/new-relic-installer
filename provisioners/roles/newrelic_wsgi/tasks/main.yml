@@ -9,6 +9,15 @@
     mode=755
     state=directory
   sudo: yes
+
+- name: create directory for newrelic logging accessible to apache user
+  file:
+    dest={{newrelic_agentlog_path}}
+    mode=755
+    owner=apache
+    group=apache
+    state=directory
+  sudo: yes
  
 - name: pip install newrelic
   pip: name=newrelic
