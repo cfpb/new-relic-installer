@@ -15,6 +15,7 @@
   roles:
     - python27
     - apache
+    - mysql
     - wsgi_app
     - newrelic_wsgi
 

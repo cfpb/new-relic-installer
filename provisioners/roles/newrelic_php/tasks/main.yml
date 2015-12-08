@@ -33,7 +33,7 @@
   sudo: yes
 
 - name: modify php newrelic.error_collector
-  lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.error_collector.record_database_errors =" line="newrelic.error_collector.record_database_errors = false"
+  lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.error_collector.record_database_errors =" line="newrelic.error_collector.record_database_errors = true"
   sudo: yes
 
 - name: modify php newrelic.error_collector.record_database_errors
@@ -44,8 +44,16 @@
   lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.daemon.auditlog =" line="newrelic.daemon.auditlog = /var/log/newrelic/audit.log"
   sudo: yes
 
+- name: modify php newrelic.error_collector.prioritize_api_errors
+  lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.error_collector.prioritize_api_errors =" line="newrelic.error_collector.prioritize_api_errors = true"
+  sudo: yes
+
 - name: modify php newrelic.analytics_events.capture_attributes
   lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.analytics_events.capture_attributes =" line="newrelic.analytics_events.capture_attributes = true"
+  sudo: yes
+
+- name: modify php newrelic.ini newrelic.capture_params
+  lineinfile: dest={{newrelic_ini_file}} state=present insertafter="[newrelic]" regexp="newrelic.capture_params =" line="newrelic.capture_params = true"
   sudo: yes
 
 - name: modify php newrelic.ini logfile

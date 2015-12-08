@@ -4,5 +4,5 @@ newrelic_ini_path: "/etc/php.d/"
 newrelic_agent_path: "/var/log/newrelic/"
 newrelic_ini_file: "{{newrelic_ini_path}}/newrelic.ini"
 newrelic_agentlog_file: "{{newrelic_agent_path}}/php_agent.log"
-application_name: "PHP App1"
+application_name: "test LAMP php application"
 newrelic_high_security: true
