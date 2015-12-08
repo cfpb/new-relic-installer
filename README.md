@@ -3,7 +3,7 @@
     
 Ansible scripts for installing php or python [New Relic](http://www.newrelic.com) agents, as well as very simple LAMP php or wsgi python applications on CentOS 6.5. The agents report application statistics to New Relic and the web apps are present so to test that the Agent installation will work as expected.
 
-  - **Technology stack**: CentOS 6.5, Apache, Mod_wsgi, Python2.7, PHP, Ansible, Vagrant.
+  - **Technology stack**: CentOS 6.5, Apache, Mod_wsgi, MySQL, Python2.7, PHP, Ansible, Vagrant.
   - **Status**:  Alpha
 
 ## Installation
