@@ -7,12 +7,12 @@ Ansible scripts for installing php or python [New Relic](http://www.newrelic.com
   - **Status**:  Alpha
 
 ## Installation
-The project is configured to require an encrypted license.yml file -- containing the New Relic license key -- that gets opened with a password. To create the encrypted license.yml file follow [instructions](http://docs.ansible.com/ansible/playbooks_vault.html#creating-encrypted-files), entering the password above when prompted, and creating a file containing the following.
+The project is configured to require an encrypted license.yml file -- containing the New Relic license key -- that gets opened with a password. To create the encrypted license.yml file follow [these instructions](http://docs.ansible.com/ansible/playbooks_vault.html#creating-encrypted-files), entering the password above when prompted, and creating a file containing the following.
 
 ```
 new_relic_license_key: <insertyournewreliclicensekey>
 ```
-**Local Installation:** For local testing, after `vagrant up` the resulting virtual box serves a local python application at http://127.0.0.1:8080/myapp and a PHP application at http://127.0.0.1:8080/info.php. Create and store the vault password locally in password.txt. 
+**Local Installation:** For local testing, after `vagrant up` the resulting virtual box serves a local python application at http://127.0.0.1:8080/myapp and a PHP application at http://127.0.0.1:8080/info.php. Create and store the vault password locally in `password.txt`. 
     
 **Remote Installation:**
 Create an `inventory_file`:
@@ -29,7 +29,7 @@ If using Jenkins, you can securely store the ansible vault password in an enviro
 ansible-playbook provisioners/provision.yml -i inventory_file --vault-password-file=get_vault_password.py -e @license.yml
 ```
 
-where get_vault_password.py prints the environment variable:
+where `get_vault_password.py` provides the environment variable storing your ansible vault password:
 ```
 import os
 print os.environ['NEW_RELIC_VAULT_PASSWORD']
