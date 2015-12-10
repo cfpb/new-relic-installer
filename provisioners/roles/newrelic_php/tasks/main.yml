@@ -71,8 +71,6 @@
   file:
     dest={{newrelic_agentlog_daemon}}
     mode=660
-    owner=apache
-    group=apache
     state=touch
   sudo: yes
 
@@ -80,8 +78,6 @@
   file:
     dest={{newrelic_agentlog_daemonaudit}}
     mode=660
-    owner=apache
-    group=apache
     state=touch
   sudo: yes
 
@@ -89,7 +85,5 @@
   file:
     dest={{newrelic_agentlog_file}}
     mode=660
-    owner=apache
-    group=apache
     state=touch
   sudo: yes
