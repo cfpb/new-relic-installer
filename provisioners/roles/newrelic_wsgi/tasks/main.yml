@@ -13,7 +13,7 @@
 - name: create directory for newrelic logging accessible to apache user
   file:
     dest={{newrelic_agentlog_path}}
-    mode=755
+    mode=700
     owner=apache
     group=apache
     state=directory
@@ -39,6 +39,15 @@
 
 - name: modify python newrelic.ini logfile
   lineinfile: dest={{newrelic_ini_file}} state=present regexp="log_file =" line="log_file = {{newrelic_agentlog_file}}"
+  sudo: yes
+
+- name: make empty log file with right permissions 
+  file:
+    dest={{newrelic_agentlog_file}}
+    mode=660
+    owner=apache
+    group=apache
+    state=touch
   sudo: yes
 
 - name: add agent config to the wsgi file
