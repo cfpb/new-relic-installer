@@ -5,6 +5,7 @@
   yum: name=rpm
   sudo: yes
 
+# It is only a problem that this fails if yum install newrelic php agent also fails
 - name: use rpm to get new relic yum repo
   shell: rpm -Uvh http://yum.newrelic.com/pub/newrelic/el5/x86_64/newrelic-repo-5-3.noarch.rpm
   sudo: yes
