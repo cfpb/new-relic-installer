@@ -13,6 +13,8 @@
 - name: pip install newrelic
   pip: name=newrelic
        extra_args='--install-option="--install-scripts=/usr/bin"'
+  environment:
+    PATH: /usr/local/bin:/bin:/usr/bin
   sudo: yes
 
 - name: use newrelic-admin to generate ini
