@@ -42,11 +42,11 @@
   sudo: yes
 
 - name: modify php newrelic.daemon.auditlog
-  lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.daemon.auditlog =" line="newrelic.daemon.auditlog = {{newrelic_agentlog_daemon}}"
+  lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.daemon.auditlog =" line="newrelic.daemon.auditlog = {{newrelic_agentlog_daemonaudit}}"
   sudo: yes
 
 - name: modify php newrelic.daemon.logfile
-  lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.daemon.logfile =" line="newrelic.daemon.logfile = /var/log/newrelic/newrelic-daemon.log"
+  lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.daemon.logfile =" line="newrelic.daemon.logfile = {{newrelic_agentlog_daemon}}"
   sudo: yes
 
 - name: modify php newrelic.error_collector.prioritize_api_errors
