@@ -5,6 +5,7 @@
   yum: name=rpm
   sudo: yes
 
+# It is only a problem that this fails if yum install newrelic php agent also fails
 - name: use rpm to get new relic yum repo
   shell: rpm -Uvh http://yum.newrelic.com/pub/newrelic/el5/x86_64/newrelic-repo-5-3.noarch.rpm
   sudo: yes
@@ -41,7 +42,11 @@
   sudo: yes
 
 - name: modify php newrelic.daemon.auditlog
-  lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.daemon.auditlog =" line="newrelic.daemon.auditlog = /var/log/newrelic/audit.log"
+  lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.daemon.auditlog =" line="newrelic.daemon.auditlog = {{newrelic_agentlog_daemon}}"
+  sudo: yes
+
+- name: modify php newrelic.daemon.logfile
+  lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.daemon.logfile =" line="newrelic.daemon.logfile = /var/log/newrelic/newrelic-daemon.log"
   sudo: yes
 
 - name: modify php newrelic.error_collector.prioritize_api_errors
@@ -61,3 +66,25 @@
   sudo: yes
   notify:
     - restart apache
+
+# permissions for logging files
+- name: daemon log with right permissions
+  file:
+    dest={{newrelic_agentlog_daemon}}
+    mode=660
+    state=touch
+  sudo: yes
+
+- name: daemon audit log with right permissions
+  file:
+    dest={{newrelic_agentlog_daemonaudit}}
+    mode=660
+    state=touch
+  sudo: yes
+
+- name: logfile with right permissions
+  file:
+    dest={{newrelic_agentlog_file}}
+    mode=660
+    state=touch
+  sudo: yes
