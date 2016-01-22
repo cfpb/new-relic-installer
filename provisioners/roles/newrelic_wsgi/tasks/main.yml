@@ -10,10 +10,10 @@
     state=directory
   sudo: yes
 
-- name: create directory for newrelic logging accessible to apache user
+- name: create directory for newrelic logging accessible to apache user and newrelic
   file:
     dest={{newrelic_agentlog_path}}
-    mode=700
+    mode=755
     owner=apache
     group=apache
     state=directory
