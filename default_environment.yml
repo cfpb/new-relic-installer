@@ -1,8 +1,8 @@
 ---
-# example source for environment variables
+# default source for environment variables
     
 env_vars:
-    EG_VAR: /a-var/
+    DEFAULT_NEWRELIC_ENVIRONMENT_VARIABLE:   
 #    PATH: /usr/local/
 #    http_proxy: http://
 #    https_proxy: https://
