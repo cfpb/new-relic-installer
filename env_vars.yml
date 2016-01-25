@@ -1,0 +1,8 @@
+---
+# example source for environment variables
+    
+env_vars:
+    EG_VAR: /a-var/
+#    PATH: /usr/local/
+#    http_proxy: http://
+#    https_proxy: https://

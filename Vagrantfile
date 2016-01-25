@@ -12,6 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.verbose = 'v'
     ansible.vault_password_file = 'password.txt'
     ansible.extra_vars = "@license.yml"
+    ansible.raw_arguments ='--extra-vars={"env_file":"../env_vars.yml"}'
     ansible.groups = {
         "php-app" => ["default"],
         "python-app" => ["default"],

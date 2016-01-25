@@ -1,6 +1,9 @@
 ---
 # tasks file for newrelic_wsgi
 
+- name: record variables supplied by environment file 
+  shell: echo "{{ env_vars }}"
+  sudo: yes
 
 #    https://docs.newrelic.com/docs/agents/python-agent/installation-configuration/python-agent-admin-script
 - name: create directory for newrelic config

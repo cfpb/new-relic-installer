@@ -9,6 +9,9 @@
     - mysql
     - php
     - newrelic_php
+  vars_files:
+    - "{{ env_file }}"
+  environment: env_vars
 
 - hosts: python-app
   gather_facts: False
@@ -18,13 +21,22 @@
     - mysql
     - wsgi_app
     - newrelic_wsgi
+  vars_files:
+    - "{{ env_file }}"
+  environment: "{{env_vars}}"
 
 - hosts: nr-php
   gather_facts: False
   roles:
     - newrelic_php
+  vars_files:
+    - "{{ env_file }}"
+  environment: "{{env_vars}}"
 
 - hosts: nr-python
   gather_facts: False
   roles:
     - newrelic_wsgi
+  vars_files:
+    - "{{ env_file }}"
+  environment: "{{env_vars}}"
