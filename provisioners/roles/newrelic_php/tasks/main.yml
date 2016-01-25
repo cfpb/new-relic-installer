@@ -72,8 +72,6 @@
 - name: modify php newrelic.ini logfile
   lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.logfile =" line="newrelic.logfile = {{newrelic_agentlog_file}}"
   sudo: yes
-  notify:
-    - restart apache
 
 # permissions for logging files
 - name: daemon log with right permissions
@@ -96,3 +94,9 @@
     mode=660
     state=touch
   sudo: yes
+
+- name: restart newrelic-daemon 
+  shell: ps -ef | grep newrelic-daemon | grep -v grep | awk '{print $2}' | xargs kill -9
+  sudo: yes
+  notify:
+    - restart apache
