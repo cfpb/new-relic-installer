@@ -42,7 +42,7 @@
   sudo: yes
 
 - name: modify php newrelic.error_collector.record_database_errors
-  lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.error_collector.record_database_errors =" line="newrelic.error_collector.record_database_errors = false"
+  lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.error_collector.record_database_errors =" line="newrelic.error_collector.record_database_errors = true"
   sudo: yes
 
 - name: modify php newrelic.daemon.auditlog
