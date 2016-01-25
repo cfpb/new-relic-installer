@@ -1,5 +1,6 @@
 ---
 # defaults file for newrelic_php
+daemon_proxy: ""
 newrelic_ini_path: "/etc/php.d/"
 newrelic_ini_file: "{{newrelic_ini_path}}/newrelic.ini"
 newrelic_agentlog_path: "/var/log/newrelic"

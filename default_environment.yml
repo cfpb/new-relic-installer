@@ -1,0 +1,8 @@
+---
+# default source for environment variables
+    
+env_vars:
+    DEFAULT_NEWRELIC_ENVIRONMENT_VARIABLE:   
+#    PATH: /usr/local/
+#    http_proxy: http://
+#    https_proxy: https://
