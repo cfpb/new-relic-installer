@@ -1,6 +1,10 @@
 ---
 # tasks file for newrelic_php
 
+- name: record variables supplied by environment file
+  shell: echo "{{ env_vars }}"
+  sudo: yes
+
 - name: install rpm
   yum: name=rpm
   sudo: yes
@@ -34,7 +38,7 @@
   sudo: yes
 
 - name: modify php newrelic.error_collector
-  lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.error_collector.record_database_errors =" line="newrelic.error_collector.record_database_errors = true"
+  lineinfile: dest={{newrelic_ini_file}} state=present regexp="newrelic.error_collector.enabled =" line="newrelic.error_collector.enabled = true"
   sudo: yes
 
 - name: modify php newrelic.error_collector.record_database_errors
@@ -59,6 +63,10 @@
 
 - name: modify php newrelic.ini newrelic.capture_params
   lineinfile: dest={{newrelic_ini_file}} state=present insertafter="[newrelic]" regexp="newrelic.capture_params =" line="newrelic.capture_params = true"
+  sudo: yes
+
+- name: modify php newrelic.ini newrelic.daemon.proxy
+  lineinfile: dest={{newrelic_ini_file}} state=present insertafter="[newrelic]" regexp="newrelic.daemon.proxy =" line="newrelic.daemon.proxy = {{daemon_proxy}}"
   sudo: yes
 
 - name: modify php newrelic.ini logfile
