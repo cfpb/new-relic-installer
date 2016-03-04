@@ -38,6 +38,7 @@ print os.environ['NEW_RELIC_VAULT_PASSWORD']
 
 ## Known issues
 
+**To use New Relic with an app installed in a virtualenv, you will need to `pip install newrelic` before using this installer**
 
 
 ## Getting help
