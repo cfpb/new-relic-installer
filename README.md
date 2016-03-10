@@ -10,7 +10,7 @@ Ansible scripts for installing php or python [New Relic](http://www.newrelic.com
 The project is configured to require an encrypted license.yml file -- containing the New Relic license key -- that gets opened with a password. To create the encrypted license.yml file follow [these instructions](http://docs.ansible.com/ansible/playbooks_vault.html#creating-encrypted-files), entering the password above when prompted, and creating a file containing the following.
 
 ```
-new_relic_license_key: <insertyournewreliclicensekey>
+newrelic_license_key: <insertyournewreliclicensekey>
 ```
 **Local Installation:** For local testing, after `vagrant up` the resulting virtual box serves a local python application at http://127.0.0.1:8080/myapp and a PHP application at http://127.0.0.1:8080/info.php. Create and store the vault password locally in `password.txt`. 
     
