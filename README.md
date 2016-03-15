@@ -12,6 +12,9 @@ The project is configured to require an encrypted license.yml file -- containing
 ```
 newrelic_license_key: <insertyournewreliclicensekey>
 ```
+
+Follow directions [here](https://docs.newrelic.com/docs/accounts-partnerships/accounts/account-setup/license-key) to find the license key.
+
 **Local Installation:** For local testing, after `vagrant up` the resulting virtual box serves a local python application at http://127.0.0.1:8080/myapp and a PHP application at http://127.0.0.1:8080/info.php. Create and store the vault password locally in `password.txt`. 
     
 **Remote Installation:**
