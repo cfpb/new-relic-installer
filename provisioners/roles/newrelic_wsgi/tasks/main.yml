@@ -44,6 +44,10 @@
   lineinfile: dest={{newrelic_ini_file}} state=present regexp="log_file =" line="log_file = {{newrelic_agentlog_file}}"
   sudo: yes
 
+- name: modify python newrelic.ini whitelist
+  lineinfile: dest={{newrelic_ini_file}} insertafter="app_name =" state=present regexp="strip_exception_messages\.whitelist =" line="strip_exception_messages.whitelist = KeyError TypeError"
+  sudo: yes
+
 - name: make empty log file with right permissions 
   file:
     dest={{newrelic_agentlog_file}}
