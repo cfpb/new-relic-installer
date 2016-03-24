@@ -64,5 +64,6 @@
 - name: import newrelic to wsgi
   lineinfile: dest={{wsgi_scriptfile}} state=present line="import newrelic.agent" insertbefore=BOF
   sudo: yes
+  ignore_errors: yes
   notify:
     - restart apache
