@@ -60,10 +60,12 @@
 - name: add agent config to the wsgi file
   lineinfile: dest={{wsgi_scriptfile}} state=present line="newrelic.agent.initialize('{{newrelic_ini_file}}')" insertbefore=BOF
   sudo: yes
+  when: (wsgi_scriptfile!="") 
 
 - name: import newrelic to wsgi
   lineinfile: dest={{wsgi_scriptfile}} state=present line="import newrelic.agent" insertbefore=BOF
   sudo: yes
+  when: (wsgi_scriptfile!="") 
 
 - name: restart apache server
   service: name=httpd state=restarted sleep=1
