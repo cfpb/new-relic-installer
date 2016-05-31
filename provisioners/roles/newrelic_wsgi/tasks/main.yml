@@ -48,6 +48,12 @@
   lineinfile: dest={{newrelic_ini_file}} insertafter="license_key =" state=present regexp="strip_exception_messages\.whitelist =" line="strip_exception_messages.whitelist = KeyError TypeError"
   sudo: yes
 
+# These configs are added to satisfy security auditing requirements, even though they're set to the same as the default.
+
+- name: modify python newrelic.ini developer_mode
+  lineinfile: dest={{newrelic_ini_file}} insertafter="license_key =" state=present line="developer_mode = false"
+  sudo: yes
+
 - name: make empty log file with right permissions 
   file:
     dest={{newrelic_agentlog_file}}
