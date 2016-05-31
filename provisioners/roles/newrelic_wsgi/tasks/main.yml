@@ -45,7 +45,7 @@
   sudo: yes
 
 - name: modify python newrelic.ini whitelist
-  lineinfile: dest={{newrelic_ini_file}} insertafter="license_key =" state=present regexp="strip_exception_messages\.whitelist =" line="strip_exception_messages.whitelist = KeyError TypeError"
+  lineinfile: dest={{newrelic_ini_file}} insertafter="license_key =" state=present regexp="strip_exception_messages\.whitelist =" line="strip_exception_messages.whitelist = Exception AttributeError IndexError ImportError KeyError TypeError django.db.utils:IntegrityError django.core.exceptions:FieldError django.core.exceptions:ValidationError jinja2.exceptions:UndefinedError jinja2.exceptions:TemplateNotFound urllib2:URLError"
   sudo: yes
 
 # These additional newrelic.ini configs are added to satisfy security auditing requirements, even though they're set to the same as the default. These are no-op, since they're set to the defaults.
