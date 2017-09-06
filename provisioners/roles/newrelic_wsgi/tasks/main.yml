@@ -45,7 +45,8 @@
   sudo: yes
 
 - name: modify python newrelic.ini whitelist
-  lineinfile: dest={{newrelic_ini_file}} insertafter="license_key =" state=present regexp="strip_exception_messages\.whitelist =" line="strip_exception_messages.whitelist = Exception AttributeError IndexError ImportError KeyError TypeError ValueError django.db.utils:IntegrityError django.db.utils:OperationalError django.db.utils:ProgrammingError django.core.exceptions:FieldError django.core.exceptions:ValidationError django.template.base:TemplateSyntaxError jinja2.exceptions:UndefinedError jinja2.exceptions:TemplateNotFound knowledgebase.models:MultipleObjectsReturned requests.exceptions:HTTPError urllib2:URLError"
+  lineinfile: dest={{newrelic_ini_file}} insertafter="license_key =" state=present regexp="strip_exception_messages\.whitelist =" line="strip_exception_messages.whitelist = Exception AttributeError IndexError ImportError KeyError TypeError ValueError django.db.utils:IntegrityError django.db.utils:OperationalError django.db.utils:ProgrammingError django.core.exceptions:FieldError django.core.exceptions:ValidationError django.template.base:TemplateSyntaxError jinja2.exceptions:UndefinedError jinja2.exceptions:TemplateNotFound requests.exceptions:HTTPError urllib2:URLError UnicodeDecodeError AssertionError regulations.views.error_handling:MissingContentException requests.exceptions:ConnectionError"
+
   sudo: yes
   
 # 404 errors are ignored by default. We want to track them so 404 has been removed from this list.
